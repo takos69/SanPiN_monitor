@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>СанПиН Monitor</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+  <script type="text/javascript" src="http://yandex.st/jquery/1.7.1/jquery.min.js" ></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.popup .close_window, .overlay').click(function (){
+        $('.popup, .overlay').css({'opacity':'0', 'visibility':'hidden'});
+      });
+      $('a.open_window').click(function (e){
+        $('.popup, .overlay').css({'opacity':'1', 'visibility':'visible'});
+        e.preventDefault();
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="index.html">
+        <p><img src="images/logo.png"></p>
+      </a>  
+      <div class="person">
+        <br>
+        <a class="open_window" href="sign_page.html">Вход</a>
+        <br>
+      </div> 
+      <div class="overlay" title="окно"></div>
+      <div class="popup">
+        <div class="close_window">x</div>
+        <div class="form">
+            <label for="login">Логин:&nbsp &nbsp</label>
+            <input type="text" id="login" name="login" placeholder="admin@axample.com">
+            <br>
+            <label for="pass">Пароль:</label>
+            <input type="text" id="password" name="password" placeholder="Сложный пароль...">
+            <input type="submit" id="button" value="ВОЙТИ">
+          <p id="demo"></p>
+        </div>
+      <script src="script/script.js"></script>
+      </div>
+        <div class="nav-toggle"><span></span></div>
+        <ul id="menu">
+          <br>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="sensors.html">Датчики</a></li>
+          <li><a href="account.html">Статистика</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="row">
+      <br>
+      <h1>Что мы используем?</h1>
+      <br>
+      <p>За оценкой состояния помещения отвечает датчик влажности и температуры. Вывод информации о состоянии помещения будет осуществляться на LCD дисплей непосредственно в самом помещении, а также данные мониторинга будут отправляться на главный сервер в здании. Если нормы СанПиН нарущены, то начинает мигать светодиод, оповещая об этом преподавателя, находящегося в аудитории. А также будет происходить оповещения технического персонала.</p> 
+      <br>
+      <p>Предусмотрен доступ к данным мониторинга со всех датчиков через специальный web-сайт и мобильное приложения.</p>
+      <br>
+    </div>
+    <h1>Как это работает?</h1>
+      <br>
+      <div class="row">
+        <p><img src="images/shema1.jpg"></p>
+        <br>
+        <p>С помощью датчиков DHT22 снимаются показания температуры и влажности и используя микроконтроллер ESP8266 отправляются по Wi-Fi сети на локальный сервер внутри помещения, в роли которого выступает микрокомпьютер Orange Pi Zero. На локальном сервере анализируются полученные данные и отображаются на LED дисплее. При не соответствии показаний СанПиН загорается красный светодиод, предупреждая преподавателя, находящегося в аудитории. Данные с локального сервера отправляются на главный сервер в здании.</p>
+      </div>
+      <br>
+      <h1>А можно поподробнее?</h1>
+      <br>
+    <div class="row">
+      <div class="col-2-1">
+        <h2>Датчик температуры и влажности</h2>
+        <br>
+        <p>Датчик DTH11 необходим для поддежания температуры и влажности в помещении. Датчик состоит из двух частей – емкостного датчика температуры и гигрометра. Первый используется для измерения температуры, второй – для влажности воздуха. Находящийся внутри чип может выполнять аналого-цифровые преобразования и выдавать цифровой сигнал, который считывается посредством микроконтроллера.</p>
+      </div>
+      <div class="col-2-2">
+        <p><img src="images/DHT11.jpg"></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1-1">
+        <p><img src="images/ESP8266.jpg"></p>
+      </div>
+      <div class="col-1-2">
+        <h2>ESP8266</h2>
+        <br>
+        <p>ESP8266 – микроконтроллер с интерфейсом WiFi, который имеет возможность исполнять программы из флеш-памяти.</p>
+        <br>
+        <p>Контроллер недорогой, обладает небольшим количеством внешних элементов и имеет следующие технические параметры:</p>
+        <br>
+        <ul>
+          <li>- Поддерживает Wi-Fi протоколы 802.11 b/g/n с WEP, WPA, WPA2;</li>
+          <li>- Обладает 14 портами ввода и вывода, SPI, I2C, UART, 10-бит АЦП;</li>
+          <li>- Поддерживает внешнюю память до 16 МБ;</li>
+          <li>- Необходимое питание от 2,2 до 3,6 В, потребляемый ток до 300 мА в зависимости от выбранного режима.</li>
+        </ul>
+        <br>
+        <p>С помощью данного микроконтроллера данные с датчиков передаются на локальную станцию в качестве которого выступает Orange Pi Zero.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2-1">
+        <h2>Orange Pi Zero</h2>
+        <br>
+        <p>Одноплатный компьютер Orange Pi Zero на базе четырех ядерного процессора Allwinner H2(+) quad core Cortex A7 процессор @ 1.2 ГГц c GPU Mali-400MP2 GPU @ 600 МГц, и имеющего 256 Мб DDR3 SDRAM. Он может работать с ОС: Android, Lubuntu, Debian, Raspbian. На базе Orange Pi Zero можно слушать музыку, смотреть видео, играть в игры, организовывать различные контроллеры и управляющие системы.</p>
+      </div>
+      <div class="col-2-2">
+        <p><img src="images/orange.jpg"></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1-1">
+        <p><img src="images/LED.jpg"></p>
+      </div>
+      <div class="col-1-2">
+        <h2>LED</h2>
+        <br>
+        <p>Светододный экран (LED) - устройство отображения и передачи информации. Необходим для отображения информации о состоянии помещения. </p>
+      </div>
+      <br>
+    </div>
+  </div>
+  <footer style="position: static;">
+    <div class="container">
+      <div class="footer-col"><span>&copy; 2019 Все права защищены «СанПиН Monitor»</span></div>
+      <div class="footer-col">
+        <div class="social-bar-wrap">
+          <a title="Facebook" href="" target="_blank"><i class="fa fa-facebook"></i></a>
+          <a title="Twitter" href="" target="_blank"><i class="fa fa-twitter"></i></a>
+          <a title="Pinterest" href="" target="_blank"><i class="fa fa-pinterest"></i></a>
+          <a title="Instagram" href="" target="_blank"><i class="fa fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <a href="contacts.html">Контакты</a>
+      </div>
+    </div>
+  </footer>
+<script>
+$('.nav-toggle').on('click', function(){
+$('#menu').toggleClass('active');
+});
+</script>
+</body>
+</html>
